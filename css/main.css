@@ -1,0 +1,492 @@
+/* ========================================
+   CSS Variables & Color Palette
+   Link Click Inspired Art Style
+   ======================================== */
+:root {
+    /* Primary Colors - Vibrant & Saturated */
+    --primary-blue: #2563EB;
+    --primary-purple: #7C3AED;
+    --primary-pink: #EC4899;
+    --primary-orange: #F59E0B;
+    --primary-green: #10B981;
+    
+    /* Secondary Colors */
+    --light-blue: #60A5FA;
+    --light-purple: #A78BFA;
+    --light-pink: #F472B6;
+    --light-orange: #FBBF24;
+    --light-green: #34D399;
+    
+    /* Dark Tones for Outlines & Shadows */
+    --dark-blue: #1E40AF;
+    --dark-purple: #5B21B6;
+    --dark-pink: #BE185D;
+    --charcoal: #1F2937;
+    --dark-gray: #374151;
+    
+    /* Light Tones */
+    --light-bg: #F9FAFB;
+    --light-gray: #E5E7EB;
+    --off-white: #F3F4F6;
+    --white: #FFFFFF;
+    
+    /* Gradient Presets */
+    --gradient-sky: linear-gradient(180deg, #60A5FA 0%, #3B82F6 50%, #2563EB 100%);
+    --gradient-magic: linear-gradient(135deg, #7C3AED 0%, #EC4899 50%, #F59E0B 100%);
+    --gradient-portal: linear-gradient(45deg, #2563EB, #7C3AED, #EC4899);
+    --gradient-sunset: linear-gradient(180deg, #F59E0B 0%, #EC4899 50%, #7C3AED 100%);
+    
+    /* Typography */
+    --font-main: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    --font-title: 'Georgia', 'Times New Roman', serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Borders & Shadows */
+    --border-bold: 3px solid var(--charcoal);
+    --border-medium: 2px solid var(--charcoal);
+    --shadow-hard: 4px 4px 0px var(--charcoal);
+    --shadow-medium: 2px 2px 0px var(--charcoal);
+    --shadow-soft: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ========================================
+   Global Reset & Base Styles
+   ======================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--light-bg);
+    color: var(--charcoal);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ========================================
+   Screen Management
+   ======================================== */
+.screen {
+    display: none;
+    width: 100vw;
+    min-height: 100vh;
+    position: relative;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========================================
+   Title Screen
+   ======================================== */
+#title-screen {
+    background: var(--gradient-magic);
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.title-content {
+    text-align: center;
+    z-index: 10;
+    animation: fadeInUp 1s ease-out;
+}
+
+.title-main {
+    font-family: var(--font-title);
+    font-size: 4rem;
+    color: var(--white);
+    text-shadow: 4px 4px 0px var(--dark-purple),
+                 8px 8px 0px rgba(0, 0, 0, 0.3);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.2;
+    letter-spacing: 2px;
+}
+
+.title-subtitle {
+    font-size: 1.5rem;
+    color: var(--light-orange);
+    margin-bottom: var(--spacing-xl);
+    font-weight: 600;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+}
+
+.title-decoration {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+.btn-primary,
+.btn-secondary {
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border: var(--border-bold);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    margin: var(--spacing-sm);
+    font-family: var(--font-main);
+}
+
+.btn-primary {
+    background: var(--primary-orange);
+    color: var(--white);
+    box-shadow: var(--shadow-hard);
+}
+
+.btn-primary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px var(--charcoal);
+    background: var(--light-orange);
+}
+
+.btn-primary:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0px var(--charcoal);
+}
+
+.btn-secondary {
+    background: var(--white);
+    color: var(--primary-purple);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn-secondary:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 4px 4px 0px var(--charcoal);
+}
+
+/* ========================================
+   Navigation Bar
+   ======================================== */
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--white);
+    border-bottom: var(--border-bold);
+    box-shadow: var(--shadow-soft);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-left,
+.nav-right {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.nav-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+    flex: 1;
+}
+
+#page-indicator {
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--dark-purple);
+}
+
+.progress-bar {
+    width: 200px;
+    height: 8px;
+    background: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+    border: 2px solid var(--charcoal);
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-magic);
+    width: 0%;
+    transition: width var(--transition-normal);
+}
+
+.nav-btn {
+    width: 40px;
+    height: 40px;
+    border: var(--border-medium);
+    background: var(--white);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-medium);
+}
+
+.nav-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0px var(--charcoal);
+}
+
+.nav-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 1px 1px 0px var(--charcoal);
+}
+
+.nav-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ========================================
+   Story Container & Page Area
+   ======================================== */
+#story-container {
+    min-height: 100vh;
+}
+
+#page-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-lg);
+    background: var(--off-white);
+}
+
+.page-content {
+    width: 100%;
+    max-width: 1200px;
+    min-height: 600px;
+    background: var(--white);
+    border: var(--border-bold);
+    border-radius: 16px;
+    box-shadow: var(--shadow-hard);
+    padding: var(--spacing-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ========================================
+   Dialogue Box (Visual Novel Style)
+   ======================================== */
+.dialogue-box {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 800px;
+    background: var(--white);
+    border: var(--border-bold);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-hard);
+    z-index: 50;
+    animation: slideUp 0.3s ease-out;
+}
+
+.dialogue-box.hidden {
+    display: none;
+}
+
+.dialogue-speaker {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--primary-purple);
+    margin-bottom: var(--spacing-xs);
+}
+
+.dialogue-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--charcoal);
+    min-height: 60px;
+}
+
+.dialogue-choices {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.dialogue-choice-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--light-purple);
+    color: var(--white);
+    border: var(--border-medium);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-medium);
+}
+
+.dialogue-choice-btn:hover {
+    background: var(--primary-purple);
+    transform: translate(-2px, -2px);
+}
+
+.dialogue-continue {
+    position: absolute;
+    bottom: var(--spacing-sm);
+    right: var(--spacing-md);
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--primary-purple);
+    cursor: pointer;
+    animation: bounce 1s infinite;
+}
+
+/* ========================================
+   Completion Screen
+   ======================================== */
+#completion-screen {
+    background: var(--gradient-magic);
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-xl);
+}
+
+.completion-content {
+    text-align: center;
+    z-index: 10;
+    animation: fadeInUp 1s ease-out;
+}
+
+.completion-title {
+    font-family: var(--font-title);
+    font-size: 3.5rem;
+    color: var(--white);
+    text-shadow: 4px 4px 0px var(--dark-purple);
+    margin-bottom: var(--spacing-md);
+}
+
+.completion-message {
+    font-size: 1.3rem;
+    color: var(--light-orange);
+    margin-bottom: var(--spacing-xl);
+    max-width: 600px;
+}
+
+.completion-stats {
+    background: var(--white);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    border: var(--border-bold);
+    box-shadow: var(--shadow-hard);
+    margin-bottom: var(--spacing-xl);
+    min-width: 300px;
+}
+
+/* ========================================
+   Canvas for Effects
+   ======================================== */
+#effects-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+@media (max-width: 768px) {
+    .title-main {
+        font-size: 2.5rem;
+    }
+    
+    .title-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    #navbar {
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    .progress-bar {
+        width: 150px;
+    }
+    
+    .page-content {
+        padding: var(--spacing-md);
+        min-height: 400px;
+    }
+    
+    .dialogue-box {
+        width: 95%;
+        padding: var(--spacing-md);
+    }
+    
+    .completion-title {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-main {
+        font-size: 2rem;
+    }
+    
+    .nav-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    #page-indicator {
+        font-size: 0.9rem;
+    }
+}

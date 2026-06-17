@@ -1,0 +1,745 @@
+/* ========================================
+   Page-Specific Styles
+   Comic Panels, Pop-up Books, Visual Novel Elements
+   ======================================== */
+
+/* ========================================
+   Comic Panel Layout System
+   ======================================== */
+.comic-layout {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+    height: 100%;
+}
+
+.comic-panel {
+    background: var(--white);
+    border: var(--border-bold);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    transition: transform 0.3s ease;
+}
+
+.comic-panel:hover {
+    transform: translateY(-2px);
+}
+
+/* Speech Bubble */
+.speech-bubble {
+    position: relative;
+    background: var(--white);
+    border: 3px solid var(--charcoal);
+    border-radius: 20px;
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: var(--charcoal);
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -5px;
+    margin-bottom: -10px;
+}
+
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    left: 30px;
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: var(--white);
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -5px;
+    margin-bottom: -10px;
+    z-index: 1;
+}
+
+/* Thought Bubble */
+.thought-bubble {
+    position: relative;
+    background: var(--off-white);
+    border: 3px solid var(--light-purple);
+    border-radius: 50%;
+    padding: 2rem;
+    margin: 2rem 0;
+    text-align: center;
+}
+
+/* Action Lines */
+.action-lines {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(245, 158, 11, 0.1) 10px,
+        rgba(245, 158, 11, 0.1) 20px
+    );
+    pointer-events: none;
+}
+
+/* ========================================
+   Page 1: The Discovery
+   ======================================== */
+.page-discovery {
+    background: linear-gradient(180deg, #87CEEB 0%, #98D8E8 100%);
+}
+
+.gate-container {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 2rem auto;
+    perspective: 1000px;
+}
+
+.gate {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s ease;
+}
+
+.gate-door {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(180deg, #8B4513 0%, #A0522D 100%);
+    border: 4px solid #5C3A21;
+    transition: transform 1s ease;
+    transform-origin: left center;
+}
+
+.gate-door.left {
+    left: 0;
+    transform-origin: left center;
+}
+
+.gate-door.right {
+    right: 0;
+    transform-origin: right center;
+}
+
+.gate.open .gate-door.left {
+    transform: rotateY(-110deg);
+}
+
+.gate.open .gate-door.right {
+    transform: rotateY(110deg);
+}
+
+.vine {
+    position: absolute;
+    background: linear-gradient(180deg, #228B22 0%, #32CD32 100%);
+    border-radius: 50%;
+    cursor: grab;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    border: 2px solid #1F2937;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.vine:hover {
+    transform: scale(1.1);
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+}
+
+.vine.cleared {
+    opacity: 0.3;
+    pointer-events: none;
+    cursor: default;
+}
+
+.sparkle {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, #FFD700 0%, transparent 70%);
+    border-radius: 50%;
+    cursor: pointer;
+    animation: twinkle 2s infinite;
+}
+
+/* ========================================
+   Page 2: The Portal
+   ======================================== */
+.page-portal {
+    background: linear-gradient(180deg, #1E3A8A 0%, #7C3AED 50%, #EC4899 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.portal-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    margin: 2rem auto;
+}
+
+.portal {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+        rgba(255, 255, 255, 0.9) 0%,
+        rgba(124, 58, 237, 0.8) 30%,
+        rgba(37, 99, 235, 0.6) 60%,
+        transparent 70%);
+    animation: portalSwirl 3s linear infinite;
+    position: relative;
+}
+
+.portal::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
+    background: radial-gradient(circle, 
+        rgba(236, 72, 153, 0.6) 0%,
+        transparent 70%);
+    animation: portalSwirl 2s linear infinite reverse;
+}
+
+.magic-orb {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle, #FFD700 0%, #F59E0B 100%);
+    border-radius: 50%;
+    border: 3px solid var(--charcoal);
+    cursor: pointer;
+    animation: float 3s ease-in-out infinite;
+    transition: transform 0.2s ease;
+}
+
+.magic-orb:hover {
+    transform: scale(1.2);
+}
+
+.magic-orb.collected {
+    animation: popIn 0.3s ease-out;
+    opacity: 0;
+}
+
+/* ========================================
+   Page 3: Meet the Guide
+   ======================================== */
+.page-guide {
+    background: linear-gradient(180deg, #FDE68A 0%, #F59E0B 100%);
+}
+
+.creature-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.creature {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.creature:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.creature-body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #A78BFA 0%, #7C3AED 100%);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    border: 4px solid var(--charcoal);
+    position: relative;
+    box-shadow: var(--shadow-hard);
+}
+
+.creature-eye {
+    position: absolute;
+    width: 30px;
+    height: 40px;
+    background: var(--white);
+    border-radius: 50%;
+    border: 3px solid var(--charcoal);
+    top: 30%;
+}
+
+.creature-eye.left {
+    left: 25%;
+}
+
+.creature-eye.right {
+    right: 25%;
+}
+
+.creature-pupil {
+    width: 15px;
+    height: 20px;
+    background: var(--charcoal);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.symbol-match-game {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.symbol-card {
+    aspect-ratio: 1;
+    background: var(--white);
+    border: 3px solid var(--charcoal);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-medium);
+}
+
+.symbol-card:hover {
+    transform: translateY(-5px);
+}
+
+.symbol-card.flipped {
+    background: var(--light-purple);
+    transform: rotateY(180deg);
+}
+
+.symbol-card.matched {
+    background: var(--light-green);
+    border-color: var(--primary-green);
+}
+
+/* ========================================
+   Page 4: The Whispering Forest
+   ======================================== */
+.page-forest {
+    background: linear-gradient(180deg, #065F46 0%, #10B981 50%, #34D399 100%);
+    position: relative;
+}
+
+.forest-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.forest-layer-back {
+    background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 50px,
+        rgba(6, 95, 70, 0.3) 50px,
+        rgba(6, 95, 70, 0.3) 100px
+    );
+}
+
+.tree {
+    position: absolute;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.tree:hover {
+    transform: scale(1.05);
+}
+
+.tree-trunk {
+    width: 40px;
+    height: 150px;
+    background: linear-gradient(180deg, #8B4513 0%, #A0522D 100%);
+    margin: 0 auto;
+    border: 3px solid #5C3A21;
+}
+
+.tree-canopy {
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, #22C55E 0%, #16A34A 100%);
+    border-radius: 50%;
+    border: 4px solid var(--charcoal);
+    margin: 0 auto -20px;
+    position: relative;
+}
+
+.glowing-path {
+    position: absolute;
+    width: 100px;
+    height: 20px;
+    background: linear-gradient(90deg, 
+        rgba(255, 215, 0, 0) 0%,
+        rgba(255, 215, 0, 0.8) 50%,
+        rgba(255, 215, 0, 0) 100%);
+    border-radius: 10px;
+    cursor: pointer;
+    animation: glow 2s infinite;
+}
+
+.hidden-object {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #FFD700 0%, transparent 70%);
+    border-radius: 50%;
+    cursor: pointer;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+}
+
+.hidden-object:hover {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+/* ========================================
+   Page 5: The Crystal Cave
+   ======================================== */
+.page-cave {
+    background: linear-gradient(180deg, #1F2937 0%, #374151 50%, #4B5563 100%);
+    position: relative;
+}
+
+.crystal {
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.crystal:hover {
+    transform: scale(1.1);
+    filter: brightness(1.3);
+}
+
+.crystal-shard {
+    width: 60px;
+    height: 100px;
+    background: linear-gradient(135deg, 
+        rgba(167, 139, 250, 0.8) 0%,
+        rgba(124, 58, 237, 0.9) 50%,
+        rgba(37, 99, 235, 0.8) 100%);
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    animation: float 4s ease-in-out infinite;
+}
+
+.crystal.active {
+    animation: glow 1s infinite;
+}
+
+.crystal-puzzle {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 2rem auto;
+    max-width: 400px;
+}
+
+/* ========================================
+   Page 6: The Bridge of Choices
+   ======================================== */
+.page-bridge {
+    background: linear-gradient(180deg, #60A5FA 0%, #3B82F6 100%);
+    position: relative;
+}
+
+.bridge-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2rem 0;
+}
+
+.bridge-path {
+    flex: 1;
+    max-width: 300px;
+    padding: 2rem;
+    background: var(--white);
+    border: 4px solid var(--charcoal);
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-hard);
+}
+
+.bridge-path:hover {
+    transform: translateY(-10px);
+    box-shadow: 6px 6px 0px var(--charcoal);
+}
+
+.bridge-path.selected {
+    background: var(--light-green);
+    border-color: var(--primary-green);
+}
+
+.floating-platform {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    background: linear-gradient(180deg, #FBBF24 0%, #F59E0B 100%);
+    border: 3px solid var(--charcoal);
+    border-radius: 15px;
+    cursor: pointer;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* ========================================
+   Page 7: The Guardian's Challenge
+   ======================================== */
+.page-guardian {
+    background: linear-gradient(180deg, #DC2626 0%, #F59E0B 100%);
+    position: relative;
+}
+
+.guardian-container {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.guardian {
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.memory-game {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 2rem auto;
+    max-width: 500px;
+}
+
+.memory-card {
+    aspect-ratio: 1;
+    background: var(--white);
+    border: 3px solid var(--charcoal);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-medium);
+}
+
+.memory-card:hover {
+    transform: scale(1.05);
+}
+
+.memory-card.revealed {
+    background: var(--light-orange);
+}
+
+.memory-card.matched {
+    background: var(--light-green);
+    border-color: var(--primary-green);
+}
+
+.falling-star {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, #FFD700 0%, transparent 70%);
+    border-radius: 50%;
+    cursor: pointer;
+    animation: float 2s ease-in-out infinite;
+}
+
+/* ========================================
+   Page 8: The Heart of Magic
+   ======================================== */
+.page-heart {
+    background: radial-gradient(circle, #FDE68A 0%, #F59E0B 50%, #EC4899 100%);
+    position: relative;
+}
+
+.heart-container {
+    text-align: center;
+    margin: 3rem 0;
+}
+
+.magic-heart {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    position: relative;
+    cursor: pointer;
+    animation: pulse 2s infinite;
+}
+
+.heart-shape {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #EC4899 0%, #F59E0B 100%);
+    clip-path: path('M100,180 C100,180 20,120 20,70 C20,40 45,20 70,20 C85,20 95,30 100,40 C105,30 115,20 130,20 C155,20 180,40 180,70 C180,120 100,180 100,180 Z');
+    border: 4px solid var(--charcoal);
+    transition: transform 0.3s ease;
+}
+
+.heart-shape:hover {
+    transform: scale(1.1);
+}
+
+.final-choice {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.choice-button {
+    padding: 1.5rem 3rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    border: 4px solid var(--charcoal);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-hard);
+    min-width: 200px;
+}
+
+.choice-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 6px 6px 0px var(--charcoal);
+}
+
+.choice-button.absorb {
+    background: linear-gradient(135deg, #7C3AED 0%, #EC4899 100%);
+    color: var(--white);
+}
+
+.choice-button.release {
+    background: linear-gradient(135deg, #10B981 0%, #60A5FA 100%);
+    color: var(--white);
+}
+
+/* ========================================
+   Pop-Up Book Layered Effect
+   ======================================== */
+.popup-layer {
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.popup-element {
+    position: absolute;
+    transform: translateZ(50px);
+    transition: transform 0.5s ease;
+}
+
+.popup-element:hover {
+    transform: translateZ(100px) scale(1.1);
+}
+
+/* ========================================
+   Parallax Layers
+   ======================================== */
+.parallax-layer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.1s ease-out;
+}
+
+.parallax-back {
+    transform: translateZ(-50px) scale(1.5);
+}
+
+.parallax-mid {
+    transform: translateZ(0);
+}
+
+.parallax-front {
+    transform: translateZ(50px);
+}
+
+/* ========================================
+   Typewriter Effect
+   ======================================== */
+.typewriter-text {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--charcoal);
+    animation: blink 0.75s step-end infinite;
+}
+
+/* ========================================
+   Responsive Adjustments
+   ======================================== */
+@media (max-width: 768px) {
+    .comic-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .gate-container {
+        width: 200px;
+        height: 280px;
+    }
+    
+    .portal-container {
+        width: 280px;
+        height: 280px;
+    }
+    
+    .bridge-container {
+        flex-direction: column;
+    }
+    
+    .bridge-path {
+        max-width: 100%;
+    }
+    
+    .symbol-match-game,
+    .memory-game {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .final-choice {
+        flex-direction: column;
+    }
+}

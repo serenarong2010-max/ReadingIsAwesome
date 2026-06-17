@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Secret Behind the Garden Gate - Interactive Storybook</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+    <!-- Title Screen -->
+    <div id="title-screen" class="screen active">
+        <div class="title-content">
+            <h1 class="title-main">The Secret Behind<br>the Garden Gate</h1>
+            <p class="title-subtitle">An Interactive Adventure</p>
+            <button id="start-btn" class="btn-primary">Begin Adventure</button>
+            <button id="continue-btn" class="btn-secondary" style="display: none;">Continue Journey</button>
+        </div>
+        <div class="title-decoration"></div>
+    </div>
+
+    <!-- Main Story Container -->
+    <div id="story-container" class="screen">
+        <!-- Navigation Bar -->
+        <nav id="navbar">
+            <div class="nav-left">
+                <button id="back-btn" class="nav-btn" title="Previous Page">◀</button>
+            </div>
+            <div class="nav-center">
+                <span id="page-indicator">Page 1 of 8</span>
+                <div class="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+            </div>
+            <div class="nav-right">
+                <button id="sound-btn" class="nav-btn" title="Toggle Sound">🔊</button>
+                <button id="next-btn" class="nav-btn" title="Next Page">▶</button>
+            </div>
+        </nav>
+
+        <!-- Story Page Area -->
+        <main id="page-area">
+            <div id="current-page" class="page-content">
+                <!-- Pages will be dynamically inserted here -->
+            </div>
+        </main>
+
+        <!-- Dialogue Box (for visual novel style pages) -->
+        <div id="dialogue-box" class="dialogue-box hidden">
+            <div class="dialogue-speaker" id="dialogue-speaker"></div>
+            <div class="dialogue-text" id="dialogue-text"></div>
+            <div class="dialogue-choices" id="dialogue-choices"></div>
+            <button id="dialogue-continue" class="dialogue-continue">▼</button>
+        </div>
+    </div>
+
+    <!-- Completion Screen -->
+    <div id="completion-screen" class="screen">
+        <div class="completion-content">
+            <h1 class="completion-title">Adventure Complete!</h1>
+            <p class="completion-message" id="completion-message"></p>
+            <div class="completion-stats" id="completion-stats"></div>
+            <button id="restart-btn" class="btn-primary">Play Again</button>
+        </div>
+    </div>
+
+    <!-- Canvas for particle effects -->
+    <canvas id="effects-canvas"></canvas>
+
+    <script src="js/effects.js"></script>
+    <script src="js/story.js"></script>
+    <script src="js/interactions.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
